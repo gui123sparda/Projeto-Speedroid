@@ -1,0 +1,16 @@
+{
+  "upstream": "https://github.com/speeduino/speeduino/tree/202501",
+  "target": "megaatmega2560",
+  "protocol": "GPSVSS/1",
+  "timeout_ms": 1500,
+  "maximum_speed_kmh": 500,
+  "verification": {
+    "cpp_state_tests": "passed",
+    "avr_full_build": "passed"
+  },
+  "files": {
+    "gps_vss.h": "b6efe8ad27df42664ad3a2a4769bd3ad00eca37e11c4dc6584e1c1e4effcf1cf",
+    "gps-vss.patch": "c61ed03575ef985528299480da799285278858f21cbc7af05e1bbcaf21d56321",
+    "build/speeduino-202501-mega2560-gps-vss.hex": "0484e201fd81522ce4a2081060820c6497d1e4231e2eb7c6101cfc749ba885a3"
+  }
+}

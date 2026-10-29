@@ -1,0 +1,14 @@
+<resources>
+    <style name="Theme.TunerStudioAndroid" parent="Theme.MaterialComponents.NoActionBar">
+        <item name="colorPrimary">#24C5B0</item>
+        <item name="colorPrimaryVariant">#101921</item>
+        <item name="colorOnPrimary">#071410</item>
+        <item name="colorSecondary">#24C5B0</item>
+        <item name="android:fontFamily">sans</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:statusBarColor">#0B1118</item>
+        <item name="android:navigationBarColor">#0B1118</item>
+        <item name="android:windowActionModeOverlay">true</item>
+        <item name="android:windowBackground">#0B1118</item>
+    </style>
+</resources>

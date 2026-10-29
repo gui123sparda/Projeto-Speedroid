@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="pt-BR"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Revisão dos painéis Speeduino no Android</title>
+<style>
+:root{color-scheme:dark;font:16px system-ui;background:#0b1118;color:#e8eef5}body{max-width:1500px;margin:auto;padding:24px}h1{font-size:28px}p{color:#a8b8c8;line-height:1.6}select,button,input{font:inherit;accent-color:#24c5b0}select,button{background:#152330;color:#e8eef5;border:1px solid #344959;border-radius:8px;padding:10px;margin:0 8px 8px 0}label{display:inline-flex;gap:10px;align-items:center}.grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}figure{margin:0}figcaption{padding:12px 0;color:#a8b8c8}img{width:100%;height:auto;background:#000;border:1px solid #253747}.overlay{display:none;position:relative;max-width:1200px}.overlay img:last-child{position:absolute;inset:0}.overlay img{display:block}.overlay-mode .grid{display:none}.overlay-mode .overlay{display:block}footer{padding-top:24px;color:#a8b8c8;font-size:14px}a{color:#24c5b0}@media(max-width:900px){.grid{grid-template-columns:1fr}}
+</style>
+<h1>Painéis originais no Android</h1>
+<p>Os três arquivos .dash são os documentos da instalação de referência, com recursos embutidos preservados. As imagens Android abaixo foram produzidas por Canvas no teste instrumentado, em 1200 × 620. A referência tem um estado de telemetria diferente: posição das agulhas, barras, GPS e indicadores podem variar. Esta revisão permite avaliar a geometria e a aparência; não representa certificação de igualdade pixel a pixel.</p>
+<select id="layout" aria-label="Painel"><option value="sweep">Speeduino Sweep · 24 componentes</option><option value="led">Speeduino LED · 49 componentes</option><option value="amber">Speeduino LED Amber · 49 componentes</option></select>
+<select id="state" aria-label="Estado Android"><option value="live">Leituras válidas</option><option value="offline">Sem telemetria</option></select>
+<button id="mode">Sobrepor imagens</button><label>Opacidade Android <input id="opacity" type="range" min="0" max="100" value="50"></label>
+<div class="grid"><figure><figcaption>Referência disponível do desktop</figcaption><img class="reference" alt="Painel de referência"></figure><figure><figcaption>Renderização Android</figcaption><img class="android" alt="Painel Android"></figure></div>
+<div class="overlay"><img class="reference" alt="Referência para comparação"><img class="android" id="blend" alt="Android sobreposto"></div>
+<footer>Validação: 30 testes unitários, 7 testes Android e compilação AVR do firmware GPS VSS. <a href="README.md">Detalhes</a> · <a href="android-instrumentation.log">Log dos testes Android</a> · <a href="../reference/dashboards.sha256">SHA-256 dos arquivos .dash</a></footer>
+<script>
+const assets={sweep:['Speeduino_Sweep','sweep'],led:['Speeduino_LED','led'],amber:['Speeduino_LED_Amber','led_amber']};
+function update(){const [name,ref]=assets[document.querySelector('#layout').value];document.querySelectorAll('.reference').forEach(i=>i.src='../reference/reference-'+ref+'.png');document.querySelectorAll('.android').forEach(i=>i.src=name+'-'+document.querySelector('#state').value+'.png');document.querySelector('#blend').style.opacity=document.querySelector('#opacity').value/100}
+document.querySelectorAll('select,input').forEach(e=>e.addEventListener('input',update));document.querySelector('#mode').onclick=()=>document.body.classList.toggle('overlay-mode');update();
+</script></html>
